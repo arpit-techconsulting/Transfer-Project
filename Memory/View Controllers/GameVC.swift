@@ -55,7 +55,12 @@ final class GameVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info",
                                                             image: UIImage(systemName: "info.circle.fill"),
                                                             primaryAction: UIAction(handler: { _ in
-            print("TODO: Show Instructions")
+            // Help Alert
+            let alertTitle = "How To"
+            let alertMessage = "Tap a square to flip it.\nIf you flip two squares and they match, you score a point.\nThe game ends when you find all matches."
+            let alertVC = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
         }))
         // Label
         view.addSubview(timeLabel)
