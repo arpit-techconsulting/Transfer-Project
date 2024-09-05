@@ -35,7 +35,16 @@ final class GameVC: UIViewController {
         var button = UIButton(configuration: .borderedProminent(),
                               primaryAction: UIAction(title: "Quit") { [weak self] _ in
             guard let self else { return }
-            navigationController?.popViewController(animated: true)
+            
+            // End Game Alert
+            let alertTitle = "End Game"
+            let alertMessage = "Do you want to quit the game?"
+            let alertVC = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "Quit", style: .destructive, handler: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
         })
         return button
     }()
