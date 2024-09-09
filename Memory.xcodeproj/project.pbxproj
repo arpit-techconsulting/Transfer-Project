@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7EC30852C8A338800D5D5E9 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EC30842C8A338800D5D5E9 /* GridCollectionViewCell.swift */; };
 		CB744D0E2C8214BA00566D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB744D0D2C8214BA00566D20 /* AppDelegate.swift */; };
 		CB744D102C8214BA00566D20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB744D0F2C8214BA00566D20 /* SceneDelegate.swift */; };
 		CB744D122C8214BA00566D20 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB744D112C8214BA00566D20 /* HomeVC.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C7EC30842C8A338800D5D5E9 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB744D0A2C8214BA00566D20 /* Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB744D0D2C8214BA00566D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB744D0F2C8214BA00566D20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			children = (
 				CB744D112C8214BA00566D20 /* HomeVC.swift */,
 				CB744D212C82312200566D20 /* GameVC.swift */,
+				C7EC30842C8A338800D5D5E9 /* GridCollectionViewCell.swift */,
 				CB744D232C82313200566D20 /* HighScoresVC.swift */,
 			);
 			path = "View Controllers";
@@ -163,6 +166,7 @@
 				CB744D122C8214BA00566D20 /* HomeVC.swift in Sources */,
 				CB744D0E2C8214BA00566D20 /* AppDelegate.swift in Sources */,
 				CB744D222C82312200566D20 /* GameVC.swift in Sources */,
+				C7EC30852C8A338800D5D5E9 /* GridCollectionViewCell.swift in Sources */,
 				CB744D262C823CF200566D20 /* Score.swift in Sources */,
 				CB744D102C8214BA00566D20 /* SceneDelegate.swift in Sources */,
 			);
