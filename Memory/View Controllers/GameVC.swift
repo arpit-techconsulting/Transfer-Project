@@ -7,6 +7,10 @@ final class GameVC: UIViewController {
     // TODO: Add timer
 
     // MARK: - Views
+    
+    private let imageNames = ["a", "b", "c", "d", "e", "f", "g", "h", "a", "b", "c", "d", "e", "f", "g", "h"]
+    private var gridData: [IndexPath: (imageName: String, isRevealed: Bool)] = [:]
+    private var flippedIndexPaths: [IndexPath] = []
 
     private lazy var timeLabel: UILabel = {
         var label = UILabel()
@@ -110,5 +114,46 @@ extension GameVC: UICollectionViewDataSource {
 extension GameVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: view.frame.width / 4 - 20, height: 80)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(flippedIndexPaths)
+        
+        if flippedIndexPaths.count == 2 {
+            // Flipping the first two back to original state
+            for path in flippedIndexPaths {
+                if let cell = collectionView.cellForItem(at: path) as? CustomCollectionViewCell {
+                    cell.imgView.image = nil
+                    cell.backgroundColor = .gray
+                    
+                    gridData[path]?.isRevealed = false
+                }
+            }
+            // Clearing the flipped cells array when there are 2 elements in the array
+            flippedIndexPaths.removeAll()
+        }
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CustomCollectionViewCell else { return }
+        print(gridData)
+        
+        // Checking if the image has already been assigned to the cell
+        if let data = gridData[indexPath] {
+            if data.isRevealed {
+                return // If already revealed, doing nothing
+            }
+    
+            cell.imgView.image = UIImage(named: data.imageName)
+            cell.backgroundColor = .clear
+            gridData[indexPath]?.isRevealed = true
+        } else {
+            // Assigning a random image (if not revealed) to this cell and making the isRevealed to true
+            let randomImageName = imageNames.randomElement() ?? "defaultImage"
+            gridData[indexPath] = (imageName: randomImageName, isRevealed: true)
+            cell.imgView.image = UIImage(named: randomImageName)
+            cell.backgroundColor = .clear
+        }
+        
+        // Adding the current cell to the flipped cells array
+        flippedIndexPaths.append(indexPath)
     }
 }
