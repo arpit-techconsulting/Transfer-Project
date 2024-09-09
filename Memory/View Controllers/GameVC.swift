@@ -39,6 +39,14 @@ final class GameVC: UIViewController {
         })
         return button
     }()
+    
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        return collectionView
+    }()
 
     // MARK: - Lifecycle
 
@@ -51,6 +59,8 @@ final class GameVC: UIViewController {
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        collectionView.dataSource = self
+        collectionView.delegate = self
         navigationItem.hidesBackButton = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info",
                                                             image: UIImage(systemName: "info.circle.fill"),
@@ -66,13 +76,39 @@ final class GameVC: UIViewController {
         view.addSubview(timeLabel)
         NSLayoutConstraint.activate([
             timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            timeLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            timeLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         // Buttons
         view.addSubview(buttonsStackView)
         NSLayoutConstraint.activate([
             buttonsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            buttonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            buttonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        // Collection View
+        self.view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10.0),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10.0),
+            collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor)
+        ])
+    }
+}
+
+extension GameVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CustomCollectionViewCell
+        cell?.backgroundColor = .gray
+        return cell ?? CustomCollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 16
+    }
+}
+
+extension GameVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: view.frame.width / 4 - 20, height: 80)
     }
 }
