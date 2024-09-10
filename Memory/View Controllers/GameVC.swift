@@ -9,7 +9,7 @@ final class GameVC: UIViewController {
     // MARK: - Views
     
     private var imageNames = ["a", "b", "c", "d", "e", "f", "g", "h", "a", "b", "c", "d", "e", "f", "g", "h"]
-    private var shuffledImgNames: [String] = []
+    private var shuffledImgNames: [String] = [] // Created an empty array of imageNames
     private var gridData: [IndexPath: (imageName: String, isRevealed: Bool)] = [:]
     private var flippedIndexPaths: [IndexPath] = []
 
@@ -57,7 +57,7 @@ final class GameVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        shuffledImgNames = imageNames.shuffled()
+        shuffledImgNames = imageNames.shuffled() // Randomizing the images and storing this to shuffledImgNames array
         setupUI()
     }
 
