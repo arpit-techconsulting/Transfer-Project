@@ -39,8 +39,14 @@ final class GameVC: UIViewController {
     private lazy var quitButton: UIButton = {
         var button = UIButton(configuration: .borderedProminent(),
                               primaryAction: UIAction(title: "Quit") { [weak self] _ in
-            guard let self else { return }
-            navigationController?.popViewController(animated: true)
+            let alertTitle = "Quit?"
+            let alertMsg = "Are you sure you want to quit?"
+            let alertVc = UIAlertController(title: alertTitle, message: alertMsg, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: "Quit", style: .destructive, handler: { _ in
+                self?.navigationController?.popViewController(animated: true)
+            }))
+            alertVc.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self?.present(alertVc, animated: true, completion: nil)
         })
         return button
     }()
@@ -165,7 +171,7 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
             let secondFlippedImgPath = flippedIndexPaths[1]
             
             if gridData[firstFlippedImgPath]?.imageName == gridData[secondFlippedImgPath]?.imageName {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     if let firstCell = collectionView.cellForItem(at: firstFlippedImgPath) as? CustomCollectionViewCell, let secondCell = collectionView.cellForItem(at: secondFlippedImgPath) as? CustomCollectionViewCell {
                         
                         firstCell.isHidden = true
@@ -173,6 +179,12 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
                         
                         self.gridData[firstFlippedImgPath] = nil
                         self.gridData[secondFlippedImgPath] = nil
+                        
+                        if self.gridData.isEmpty {
+                            let alertVc = UIAlertController(title: "Congratulations!", message: "You've matched all the images", preferredStyle: .alert)
+                            alertVc.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alertVc, animated: true, completion: nil)
+                        }
                     }
                     
                     self.flippedIndexPaths.removeAll()
