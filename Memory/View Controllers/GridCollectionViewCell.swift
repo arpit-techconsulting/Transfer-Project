@@ -8,16 +8,9 @@
 import UIKit
 
 class GridCollectionViewCell: UICollectionViewCell {
-    let imageView = UIImageView()
-    let size = 20
-    
+    var backgroundImageAsset = UIImage()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(imageView)
-        NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: CGFloat(size)),
-            self.widthAnchor.constraint(equalToConstant: CGFloat(size)),
-        ])
     }
     
     required init?(coder: NSCoder) {
