@@ -8,7 +8,8 @@ final class GameVC: UIViewController {
 
     // MARK: - Views
     
-    private let imageNames = ["a", "b", "c", "d", "e", "f", "g", "h", "a", "b", "c", "d", "e", "f", "g", "h"]
+    private var imageNames = ["a", "b", "c", "d", "e", "f", "g", "h", "a", "b", "c", "d", "e", "f", "g", "h"]
+    private var shuffledImgNames: [String] = []
     private var gridData: [IndexPath: (imageName: String, isRevealed: Bool)] = [:]
     private var flippedIndexPaths: [IndexPath] = []
 
@@ -56,6 +57,7 @@ final class GameVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        shuffledImgNames = imageNames.shuffled()
         setupUI()
     }
 
@@ -117,7 +119,6 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(flippedIndexPaths)
         
         if flippedIndexPaths.count == 2 {
             // Flipping the first two back to original state
@@ -134,12 +135,12 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
         }
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? CustomCollectionViewCell else { return }
-        print(gridData)
         
-        // Checking if the image has already been assigned to the cell
+        
+        // Checking if the image is already avalaible in the gridData dictionary
         if let data = gridData[indexPath] {
             if data.isRevealed {
-                return // If already revealed, doing nothing
+                return // If already revealed, then doing nothing
             }
     
             cell.imgView.image = UIImage(named: data.imageName)
@@ -147,13 +148,40 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
             gridData[indexPath]?.isRevealed = true
         } else {
             // Assigning a random image (if not revealed) to this cell and making the isRevealed to true
-            let randomImageName = imageNames.randomElement() ?? "defaultImage"
+            let randomImageName = shuffledImgNames[indexPath.item]
             gridData[indexPath] = (imageName: randomImageName, isRevealed: true)
             cell.imgView.image = UIImage(named: randomImageName)
             cell.backgroundColor = .clear
         }
         
+        print(gridData)
+        
         // Adding the current cell to the flipped cells array
         flippedIndexPaths.append(indexPath)
+        print(flippedIndexPaths)
+        
+        if flippedIndexPaths.count == 2 {
+            let firstFlippedImgPath = flippedIndexPaths[0]
+            let secondFlippedImgPath = flippedIndexPaths[1]
+            
+            if gridData[firstFlippedImgPath]?.imageName == gridData[secondFlippedImgPath]?.imageName {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    if let firstCell = collectionView.cellForItem(at: firstFlippedImgPath) as? CustomCollectionViewCell, let secondCell = collectionView.cellForItem(at: secondFlippedImgPath) as? CustomCollectionViewCell {
+                        
+                        firstCell.isHidden = true
+                        secondCell.isHidden = true
+                        
+                        self.gridData[firstFlippedImgPath] = nil
+                        self.gridData[secondFlippedImgPath] = nil
+                    }
+                    
+                    self.flippedIndexPaths.removeAll()
+                }
+            }
+            
+        }
+        
+        print(gridData)
+        print(flippedIndexPaths)
     }
 }
