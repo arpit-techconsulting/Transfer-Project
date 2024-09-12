@@ -12,6 +12,7 @@ final class GameVC: UIViewController {
     private var shuffledImgNames: [String] = [] // Created an empty array of imageNames
     private var gridData: [IndexPath: (imageName: String, isRevealed: Bool)] = [:]
     private var flippedIndexPaths: [IndexPath] = []
+    private var totalPoints = 0
 
     private lazy var timeLabel: UILabel = {
         var label = UILabel()
@@ -115,7 +116,7 @@ extension GameVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 16
+        return imageNames.count
     }
 }
 
@@ -180,8 +181,10 @@ extension GameVC: UICollectionViewDelegateFlowLayout {
                         self.gridData[firstFlippedImgPath] = nil
                         self.gridData[secondFlippedImgPath] = nil
                         
+                        self.totalPoints += 1
+                        
                         if self.gridData.isEmpty {
-                            let alertVc = UIAlertController(title: "Congratulations!", message: "You've matched all the images", preferredStyle: .alert)
+                            let alertVc = UIAlertController(title: "Congratulations!", message: "You've matched all the images \n Total Points Earned: \(self.totalPoints)", preferredStyle: .alert)
                             alertVc.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                             self.present(alertVc, animated: true, completion: nil)
                         }
