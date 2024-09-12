@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B6D25F12C8E6A5A00E70D49 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D25F02C8E6A5A00E70D49 /* CustomCollectionViewCell.swift */; };
+		2BCE1A052C928E2400A34F73 /* GameVm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCE1A042C928E2400A34F73 /* GameVm.swift */; };
 		CB744D0E2C8214BA00566D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB744D0D2C8214BA00566D20 /* AppDelegate.swift */; };
 		CB744D102C8214BA00566D20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB744D0F2C8214BA00566D20 /* SceneDelegate.swift */; };
 		CB744D122C8214BA00566D20 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB744D112C8214BA00566D20 /* HomeVC.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		2B6D25F02C8E6A5A00E70D49 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BCE1A042C928E2400A34F73 /* GameVm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVm.swift; sourceTree = "<group>"; };
 		CB744D0A2C8214BA00566D20 /* Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB744D0D2C8214BA00566D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB744D0F2C8214BA00566D20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BCE1A032C928E0800A34F73 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2BCE1A042C928E2400A34F73 /* GameVm.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CB744D012C8214BA00566D20 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 		CB744D0C2C8214BA00566D20 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
+				2BCE1A032C928E0800A34F73 /* ViewModel */,
 				CB744D0D2C8214BA00566D20 /* AppDelegate.swift */,
 				CB744D0F2C8214BA00566D20 /* SceneDelegate.swift */,
 				CB744D282C825DD000566D20 /* Model */,
@@ -166,6 +177,7 @@
 				2B6D25F12C8E6A5A00E70D49 /* CustomCollectionViewCell.swift in Sources */,
 				CB744D122C8214BA00566D20 /* HomeVC.swift in Sources */,
 				CB744D0E2C8214BA00566D20 /* AppDelegate.swift in Sources */,
+				2BCE1A052C928E2400A34F73 /* GameVm.swift in Sources */,
 				CB744D222C82312200566D20 /* GameVC.swift in Sources */,
 				CB744D262C823CF200566D20 /* Score.swift in Sources */,
 				CB744D102C8214BA00566D20 /* SceneDelegate.swift in Sources */,
