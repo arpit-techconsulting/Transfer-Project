@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C7EC30852C8A338800D5D5E9 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EC30842C8A338800D5D5E9 /* GridCollectionViewCell.swift */; };
+		C7F1E2922C929685009C550A /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1E2912C929685009C550A /* GameViewModel.swift */; };
 		C7F9E3CC2C901C6400893A03 /* a.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F9E3B22C901C6400893A03 /* a.jpg */; };
 		C7F9E3CE2C901C6400893A03 /* b.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F9E3B52C901C6400893A03 /* b.jpg */; };
 		C7F9E3D02C901C6400893A03 /* c.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F9E3B82C901C6400893A03 /* c.jpg */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		C7EC30842C8A338800D5D5E9 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
+		C7F1E2912C929685009C550A /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		C7F9E3B22C901C6400893A03 /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a.jpg; sourceTree = "<group>"; };
 		C7F9E3B52C901C6400893A03 /* b.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b.jpg; sourceTree = "<group>"; };
 		C7F9E3B82C901C6400893A03 /* c.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c.jpg; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				CB744D0D2C8214BA00566D20 /* AppDelegate.swift */,
 				CB744D0F2C8214BA00566D20 /* SceneDelegate.swift */,
+				C7F1E2912C929685009C550A /* GameViewModel.swift */,
 				CB744D282C825DD000566D20 /* Model */,
 				CB744D272C825DC500566D20 /* View Controllers */,
 				CB744D162C8214BC00566D20 /* Assets.xcassets */,
@@ -207,6 +210,7 @@
 				CB744D0E2C8214BA00566D20 /* AppDelegate.swift in Sources */,
 				CB744D222C82312200566D20 /* GameVC.swift in Sources */,
 				C7EC30852C8A338800D5D5E9 /* GridCollectionViewCell.swift in Sources */,
+				C7F1E2922C929685009C550A /* GameViewModel.swift in Sources */,
 				CB744D262C823CF200566D20 /* Score.swift in Sources */,
 				CB744D102C8214BA00566D20 /* SceneDelegate.swift in Sources */,
 			);
