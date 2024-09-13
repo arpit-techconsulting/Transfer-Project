@@ -5,6 +5,8 @@ final class GameVC: UIViewController {
 
     var timerCancellable: AnyCancellable?
     let gameVM = GameViewModel()
+    static var guessMatch: [String] = []
+    static var cellIndexes: [IndexPath] = []
     
     // MARK: - Properties
 
@@ -119,18 +121,41 @@ extension GameVC: UICollectionViewDataSource {
 
 extension GameVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = gridView.dequeueReusableCell(withReuseIdentifier:
-     "gridCell", for: indexPath) as? GridCollectionViewCell else { return }
-        cell.showImage()
-        //gridView.reloadData()
+        guard let cell = gridView.cellForItem(at: indexPath) as? GridCollectionViewCell else {return}
+        cell.showImage(itemIndex: indexPath.item, isPlaying: gameVM.isPlaying)
+        //GameVC.guessMatch.append(gameVM.imgNames[indexPath.item])
+        print(indexPath.item)
+        GameVC.cellIndexes.append(indexPath)
+        checkMatch()
+    }
+    
+    func checkMatch() {
+        print("guessmatch count \(GameVC.guessMatch.count)")
+        if GameVC.guessMatch.count > 1 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                let guessSet = Set(GameVC.guessMatch.map { $0 })
+                if (guessSet.count < GameVC.guessMatch.count) {
+                    print("match found")
+                    GameVC.guessMatch = []
+                    for i in GameVC.cellIndexes {
+                        guard let cell = self.gridView.cellForItem(at: i) as? GridCollectionViewCell else {return}
+                        cell.isHidden = true
+                    }
+                    GameVC.cellIndexes.removeAll()
+                } else {
+                    print("no match")
+                    GameVC.guessMatch = []
+                    for i in GameVC.cellIndexes {
+                        guard let cell = self.gridView.cellForItem(at: i) as? GridCollectionViewCell else {return}
+                        cell.hideImage()
+                    }
+                    GameVC.cellIndexes.removeAll()
+                }
+            })
+        }
     }
 }
 
 extension GameVC: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-//     "gridCell", for: indexPath) as? GridCollectionViewCell else { return }
-//        cell.showImage(imgsArr: imgsArr, itemIndex: indexPath.item)
-//        gridView?.reloadData()
-//    }
+
 }

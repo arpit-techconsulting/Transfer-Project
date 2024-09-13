@@ -11,14 +11,19 @@ class GameViewModel {
     var imgNames: [String] = ["a", "b", "c", "d", "e", "f", "g", "h", "a", "b", "c", "d", "e", "f", "g", "h"]
     var stopwatchTimer: Timer?
     @Published var elapsedTime: TimeInterval = 0
+    var isPlaying: Bool = false
     
     init() {
         imgNames.shuffle()
     }
     
     func startGame() {
-            // If the timer is running, stop it
-    if let timer = stopwatchTimer {
+        self.isPlaying = true
+        startTimer()
+    }
+    
+    func startTimer() {
+        if let timer = stopwatchTimer {
             timer.invalidate()
             stopwatchTimer = nil
             elapsedTime = 0

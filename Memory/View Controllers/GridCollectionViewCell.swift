@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Combine
+
 
 class GridCollectionViewCell: UICollectionViewCell {
-    var backgroundImageAsset = UIImage()
+    let gameVM = GameViewModel()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,12 +21,17 @@ class GridCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func showImage() {
-        self.backgroundColor = .green
-//        let uiImageView = UIImageView(image: imgsArr[itemIndex])
-//        self.addSubview(uiImageView)
-//        uiImageView.translatesAutoresizingMaskIntoConstraints = false
-//        uiImageView.frame = self.contentView.bounds
-//        self.backgroundColor = nil
+    func showImage(itemIndex: Int, isPlaying: Bool) {
+        if isPlaying {
+            let imageView = UIImageView(image: UIImage(named: gameVM.imgNames[itemIndex]))
+            self.addSubview(imageView)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.frame = self.contentView.bounds
+            GameVC.guessMatch.append(gameVM.imgNames[itemIndex])
+        }
+    }
+    
+    func hideImage() {
+        self.subviews.forEach({ $0.removeFromSuperview() })
     }
 }
